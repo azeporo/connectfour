@@ -1,0 +1,34 @@
+<!doctype html>
+<head>
+  <title>Connect 4</title>
+  <link href="connect4.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+  <h1 class="d-flex pt-3 pb-4 justify-content-center"><span id="connect">Connect</span>-<span id="four">Four</span></h1>
+  <tr>
+    <form>
+      <div class="row">
+        <div class="col-4 form-group offset-2">
+          <input type="number" id="rows" class="form-control"  min="7" placeholder="Number of rows?">
+        </div>
+        <div class="col-4 form-group">
+          <input type="number" id="columns" class="form-control" min="7" placeholder="Number of columns?">
+        </div>
+      </div>
+      <button class="d-grid mx-auto btn btn-dark mb-3 col-6 mt-3 mb-10" id="start">Start Game</button>
+    </form>     
+  </tr>
+</div>
+  <div id="game" class="d-flex justify-content-center ">
+    <table id="board"></table>
+  </div>
+
+
+<script src="connect4.js"></script>
+
+</body>
+</html>
