@@ -108,7 +108,8 @@ function handleClick(evt) {
   // check for win
     if (checkForWin()) {
       setTimeout(function(){
-        return endGame(`Player ${currPlayer} won!`);
+        currPlayer = currPlayer === 1 ? 2 : 1;
+        endGame(`Player ${currPlayer} won!`);
       },100)
     }
   
