@@ -10,15 +10,13 @@ let start = document.querySelector('#start');
 let form = document.querySelector('form');
 
 let width = 7;
-let height = 6;
+let height = 7;
 
-let currPlayer = 1; // active player: 1 or 2
-let board = []; // array of rows, each row is array of cells  (board[y][x])
+let currPlayer = 1;
+let board = []; 
 
-/** makeBoard: create in-JS board structure:
- *    board = array of rows, each row is array of cells  (board[y][x])
- */
 
+//Creates the JS board given the user input values. Generates the necessary arrays and values within each nested array.
 function makeBoard() {
   for(let i = 0; i< height; i++){
     board.push([])
@@ -33,14 +31,14 @@ function makeBoard() {
 function makeHtmlBoard() {
   let htmlBoard = document.querySelector('#board');
 
-  //Creates a table row and sets the id to column-top. It also adds an event listener for a "click"
-  //and runs the handleClick function.
+  //Creates a table row and adds an event listener to it.
+  //WHen the event is triggered it calls the handleClick function.
   let top = document.createElement("tr");
   top.setAttribute("id", "column-top");
   top.addEventListener("click", handleClick);
 
-  //Loops over the number of columns and creates data cells with unique id's. Then it appends them 
-  //to the table row created above. Latly it appends the table row to the board.
+  //Loops over the width value and creates data cells with unique id's. Appends the new elements  
+  //to the table row created above and ultimately appends the table row to the board.
   for (let x = 0; x < width; x++) {
     let headCell = document.createElement("td");
     headCell.setAttribute("id", x);
@@ -48,7 +46,8 @@ function makeHtmlBoard() {
   }
   htmlBoard.append(top);
 
-  // Loops over the height value and creates a new table row. Then appends the new row to the board.
+  // Loops over the height value and creates a new table row. Then creates the correct number of columns
+  //within that row and finally appends the new row to the board.
   for (let y = 0; y < height; y++) {
     const row = document.createElement("tr");
 
@@ -71,8 +70,6 @@ function findSpotForCol(x) {
   }
   return null; 
 }
-
-/** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
   let cell = document.getElementById(`${y}-${x}`);
@@ -113,12 +110,12 @@ function handleClick(evt) {
       },100)
     }
   
-  // check for tie
+  // Checks if the entire  board has been filled and there is no winner
   if (board.every(val => val.every(cell => cell))){
     return endGame('Its a Tie!!');
   }
 
-  // switch players
+  // Switches the active player after a player has made a move
   currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
@@ -140,7 +137,6 @@ function checkForWin() {
     );
   }
 
-  // TODO: read and understand this code. Add comments to help you.
 
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
@@ -156,8 +152,7 @@ function checkForWin() {
   }
 }
 
-
-
+//Accepts user inputs and begins the game using the specified number of rows and columns
 form.addEventListener('submit', function(e){
   e.preventDefault();
   width = inputWidth.value === "" ? 7: inputWidth.value;
